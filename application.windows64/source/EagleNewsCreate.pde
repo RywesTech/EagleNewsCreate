@@ -296,8 +296,8 @@ void draw() {
     stroke(255);
     fill(255);
     textSize(20); 
-    text("Ryan Westcott, 2015", x - 250, y - 40);
-    text("Version 1.0  (Beta)", 50, y - 40);
+    text("Ryan Westcott 2015", x - 250, y - 40);
+    text("Version 1.0  (beta)", 50, y - 40);
 
     if (mouseX >= x / 2 - 150 && mouseX <= x / 2 + 150 && mouseY >= 300 && mouseY <= 340) {
       fill(200);
@@ -367,6 +367,7 @@ void draw() {
 
     if (mouseX >= 0 && mouseX <= 210 && mouseY >= 125 && mouseY <= 175) {
       if (mousePressed) {
+        //export();
         MRval = 4;
       }
       fill(200);
@@ -710,9 +711,6 @@ void draw() {
     background(bg);
     hideTB();
     text("Done", 200,200);
-    if(mousePressed){
-      view = 0;
-    }
     break;
   }
 }

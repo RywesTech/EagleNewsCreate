@@ -13,15 +13,12 @@ String[] tickers;
 int art_cnt, id_cnt;
 
 void export() {
-  hideTB(); 
   //First move the old file out
-  JSONObject news_imp = loadJSONObject("/Users/ryan/Desktop/EAGLE NEWS/latest.eaglenews");
-  //JSONObject news_imp = loadJSONObject("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
+  //JSONObject news_imp = loadJSONObject("/Users/ryan/Desktop/EAGLE NEWS/latest.eaglenews");
+  JSONObject news_imp = loadJSONObject("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
   String dop = news_imp.getString("dop");// Date Of Publication
-  //File news = new File("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
-  File news = new File("/Users/ryan/Desktop/EAGLE NEWS/latest.eaglenews");
-  //if (news.renameTo(new File("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\Old news\\" + dop))) {
-  if (news.renameTo(new File("/Users/ryan/Desktop/EAGLE NEWS/Old news/" + dop))) {
+  File news = new File("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
+  if (news.renameTo(new File("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\Old news\\" + dop))) {
     println("File is moved successful!");
   } else {
     println("File failed to move!");
@@ -80,24 +77,24 @@ void export() {
   text.setString("ticker", tickers[0]);
 
   //---DATES---\\
-
+  
   dates = new String [6];
   id_texts = new String [6];
-
+  
   dates[0] = date1Tb.getText();
   dates[1] = date2Tb.getText();
   dates[2] = date3Tb.getText();
   dates[3] = date4Tb.getText();
   dates[4] = date5Tb.getText();
   dates[5] = date6Tb.getText();
-
+  
   id_texts[0] = date1Bb.getText();
   id_texts[1] = date2Bb.getText();
   id_texts[2] = date3Bb.getText();
   id_texts[3] = date4Bb.getText();
   id_texts[4] = date5Bb.getText();
   id_texts[5] = date6Bb.getText();
-
+  
   for (int i = 0; i < 6; i++) {
     String datesTemp = dates[i];
     println(datesTemp);
@@ -107,9 +104,9 @@ void export() {
     }
   }
   text.setInt("id_cnt", id_cnt);
-
+  
   important_dates = new JSONArray();
-
+  
   for (int i = 0; i < id_cnt; i++) {
     println("now: " + i);
     JSONObject important_date = new JSONObject();
@@ -117,17 +114,17 @@ void export() {
     important_date.setString("text", id_texts[i]);
     important_dates.setJSONObject(i, important_date);
   }
-
+  
   text.setJSONArray("important_dates", important_dates);
-
+  
   //---Date Of Publication---\\
 
   dop = dateOP1b.getText() + "," + dateOP2b.getText() + dateOP3b.getText() + "," + dateOP4b.getText(); 
   text.setString("dop", dop);
 
   //---SAVE FILE---\\
-  //saveJSONObject(text, "Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
-  saveJSONObject(text, "/Users/ryan/Desktop/EAGLE NEWS/latest.eaglenews"); 
+  saveJSONObject(text, "Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
+  //saveJSONObject(text, "/Users/ryan/Desktop/EAGLE NEWS/latest.eaglenews"); 
 
   //---LEAVE---\\
   view = 6;

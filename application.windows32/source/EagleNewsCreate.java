@@ -1,9 +1,30 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import g4p_controls.*; 
+import java.util.Date; 
+import hypermedia.net.*; 
+import java.io.File; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class EagleNewsCreate extends PApplet {
+
 /**
- ███████  █████   ██████  ██      ███████     ███    ██ ███████ ██     ██ ███████
- ██      ██   ██ ██       ██      ██          ████   ██ ██      ██     ██ ██
- █████   ███████ ██   ███ ██      █████       ██ ██  ██ █████   ██  █  ██ ███████
- ██      ██   ██ ██    ██ ██      ██          ██  ██ ██ ██      ██ ███ ██      ██
- ███████ ██   ██  ██████  ███████ ███████     ██   ████ ███████  ███ ███  ███████
+ \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588      \u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2588\u2588\u2588    \u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588     \u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\u2588
+ \u2588\u2588      \u2588\u2588   \u2588\u2588 \u2588\u2588       \u2588\u2588      \u2588\u2588          \u2588\u2588\u2588\u2588   \u2588\u2588 \u2588\u2588      \u2588\u2588     \u2588\u2588 \u2588\u2588
+ \u2588\u2588\u2588\u2588\u2588   \u2588\u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588   \u2588\u2588\u2588 \u2588\u2588      \u2588\u2588\u2588\u2588\u2588       \u2588\u2588 \u2588\u2588  \u2588\u2588 \u2588\u2588\u2588\u2588\u2588   \u2588\u2588  \u2588  \u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\u2588
+ \u2588\u2588      \u2588\u2588   \u2588\u2588 \u2588\u2588    \u2588\u2588 \u2588\u2588      \u2588\u2588          \u2588\u2588  \u2588\u2588 \u2588\u2588 \u2588\u2588      \u2588\u2588 \u2588\u2588\u2588 \u2588\u2588      \u2588\u2588
+ \u2588\u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588   \u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2588\u2588   \u2588\u2588\u2588\u2588 \u2588\u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2588 \u2588\u2588\u2588  \u2588\u2588\u2588\u2588\u2588\u2588\u2588
  ___      ___       _____           ________           ________     
 |\  \    /  /|     / __  \         |\   __  \         |\   __  \    
 \ \  \  /  / /    |\/_|\  \        \ \  \|\  \        \ \  \|\  \   
@@ -28,10 +49,10 @@ UPDATE 1.0.0 NEW FEATURES:
 //http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=Type%20Something
 //http://patorjk.com/software/taag/#p=display&h=0&v=3&f=3D-ASCII&t=V%201.x.x
 
-import g4p_controls.*;
-import java.util.Date;
-import hypermedia.net.*;
-import java.io.File;
+
+
+
+
 
 GTextArea dateOP1b, dateOP2b, dateOP3b, dateOP4b, date1Tb, date1Bb, date2Tb, date2Bb, date3Tb, date3Bb, date4Tb, date4Bb, date5Tb, date5Bb, date6Tb, date6Bb, art1Tb, art1Bb, art2Tb, art2Bb, art3Tb, art3Bb, art4Tb, art4Bb, art5Tb, art5Bb, art6Tb, art6Bb, art7Tb, art7Bb, art8Tb, art8Bb, ticker;  // The text boxes
 UDP udp;
@@ -53,11 +74,11 @@ String dayOW   = "";
 String monthOY = "";
 String filePath;
 
-color bg = color(100, 150, 255);  // Background color
+int bg = color(100, 150, 255);  // Background color
 
 boolean loaded = false, loadingFile = true;
 
-void setup() {
+public void setup() {
   println("starting setup");
 
   //x = displayWidth;
@@ -79,7 +100,7 @@ void setup() {
     println(i);
   }
 
-  println("Done loading data, now getting the date, it took " + millis() / 1000.0 + " seconds");
+  println("Done loading data, now getting the date, it took " + millis() / 1000.0f + " seconds");
   final int day = new Date().getDay();
   if (day == 1) {
     dayOW = "Monday";
@@ -126,7 +147,7 @@ void setup() {
   year = year();
   println("Day of the week: " + dayOW);
   println("Month of the year: " + monthOY);
-  println("Done getting Dates, it took " + millis() / 1000.0 + " seconds.  Now starting to create the text boxes");
+  println("Done getting Dates, it took " + millis() / 1000.0f + " seconds.  Now starting to create the text boxes");
 
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
 
@@ -276,10 +297,10 @@ void setup() {
   println("===================================================");
   println("   Eagle News V1.0 created by Ryan Westcott");
   println("===================================================");
-  println("Setup took " + millis() / 1000.0 + " Second(s)");
+  println("Setup took " + millis() / 1000.0f + " Second(s)");
 }
 
-void draw() {
+public void draw() {
   x = width;
   y = height;
 
@@ -296,8 +317,8 @@ void draw() {
     stroke(255);
     fill(255);
     textSize(20); 
-    text("Ryan Westcott, 2015", x - 250, y - 40);
-    text("Version 1.0  (Beta)", 50, y - 40);
+    text("Ryan Westcott 2015", x - 250, y - 40);
+    text("Version 1.0  (beta)", 50, y - 40);
 
     if (mouseX >= x / 2 - 150 && mouseX <= x / 2 + 150 && mouseY >= 300 && mouseY <= 340) {
       fill(200);
@@ -367,6 +388,7 @@ void draw() {
 
     if (mouseX >= 0 && mouseX <= 210 && mouseY >= 125 && mouseY <= 175) {
       if (mousePressed) {
+        //export();
         MRval = 4;
       }
       fill(200);
@@ -434,7 +456,7 @@ void draw() {
     text("Discard", 45, 215);
     text("Save", 45, 275);
     text("Preview", 45, 335);
-    text("←   Back", 15, 395);
+    text("\u2190   Back", 15, 395);
     text("Main Menu", 45, 455);
 
     switch(viewN) {
@@ -710,9 +732,339 @@ void draw() {
     background(bg);
     hideTB();
     text("Done", 200,200);
-    if(mousePressed){
-      view = 0;
-    }
     break;
+  }
+}
+public void hideTB() {
+  date1Tb.setVisible(false);
+  date1Bb.setVisible(false);
+  date2Tb.setVisible(false);
+  date2Bb.setVisible(false);
+  date3Tb.setVisible(false);
+  date3Bb.setVisible(false);
+  date4Tb.setVisible(false);
+  date4Bb.setVisible(false);
+  date5Tb.setVisible(false);
+  date5Bb.setVisible(false);
+  date6Tb.setVisible(false);
+  date6Bb.setVisible(false);
+  dateOP1b.setVisible(false);
+  dateOP2b.setVisible(false);
+  dateOP3b.setVisible(false);
+  dateOP4b.setVisible(false);
+  art1Tb.setVisible(false);
+  art1Bb.setVisible(false);
+  art2Tb.setVisible(false);
+  art2Bb.setVisible(false);
+  art3Tb.setVisible(false);
+  art3Bb.setVisible(false);
+  art4Tb.setVisible(false);
+  art4Bb.setVisible(false);
+  art5Tb.setVisible(false);
+  art5Bb.setVisible(false);
+  art6Tb.setVisible(false);
+  art6Bb.setVisible(false);
+  art7Tb.setVisible(false);
+  art7Bb.setVisible(false);
+  art8Tb.setVisible(false);
+  art8Bb.setVisible(false);
+  ticker.setVisible(false);
+}
+
+public void loading(int x, int y, int xx, int yy) {
+  loadingFrameRate = loadingFrameRate + 1;
+  if (loadingFrameRate == 3) {
+    if (currentFrame < 11) {
+      currentFrame = currentFrame + 1;
+    } else {
+      currentFrame = 0;
+    }
+    loadingFrameRate = 0;
+  }
+  image(loading[currentFrame], x, y, xx, yy);
+}
+
+
+public void keyPressed() {
+  if (key == ESC) {
+    key = 0;
+  }
+}
+
+public void exit() {
+  println("Program compiled correctialy and ran for " + millis() / 1000.0f + " seconds");
+  udp.send("Testing...", "71.193.194.121", 9440);
+  println("Diagnostic sent, shuting down...");
+  super.exit();
+}
+JSONObject text;
+JSONObject[] article;
+
+JSONArray important_dates;
+JSONArray articles;
+
+String[] titles;
+String[] art_texts;
+String[] id_texts;
+String[] dates;
+String[] tickers;
+
+int art_cnt, id_cnt;
+
+public void export() {
+  //First move the old file out
+  //JSONObject news_imp = loadJSONObject("/Users/ryan/Desktop/EAGLE NEWS/latest.eaglenews");
+  JSONObject news_imp = loadJSONObject("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
+  String dop = news_imp.getString("dop");// Date Of Publication
+  File news = new File("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
+  if (news.renameTo(new File("Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\Old news\\" + dop))) {
+    println("File is moved successful!");
+  } else {
+    println("File failed to move!");
+  }
+
+  //Then create the new file
+
+  text = new JSONObject();
+
+  //---ARTICLES---\\
+  titles = new String [8];
+  art_texts  = new String [8];
+  //prepare:
+  titles[0] = art1Tb.getText();
+  titles[1] = art2Tb.getText();
+  titles[2] = art3Tb.getText();
+  titles[3] = art4Tb.getText();
+  titles[4] = art5Tb.getText();
+  titles[5] = art6Tb.getText();
+  titles[6] = art7Tb.getText();
+  titles[7] = art8Tb.getText();
+
+  art_texts[0] = art1Bb.getText();
+  art_texts[1] = art2Bb.getText();
+  art_texts[2] = art3Bb.getText();
+  art_texts[3] = art4Bb.getText();
+  art_texts[4] = art5Bb.getText();
+  art_texts[5] = art6Bb.getText();
+  art_texts[6] = art7Bb.getText();
+  art_texts[7] = art8Bb.getText();
+
+  for (int i = 0; i < 8; i++) {
+    String titlesTemp = titles[i];
+    println(titlesTemp);
+    println(titlesTemp.length());
+    if (titlesTemp.length() > 2) {
+      art_cnt = art_cnt + 1;
+    }
+  }
+  println(art_cnt);
+
+  articles = new JSONArray();
+
+  for (int i = 0; i < art_cnt; i++) {
+    JSONObject article = new JSONObject();
+    article.setString("title", titles[i]);
+    article.setString("text", art_texts[i]);
+    articles.setJSONObject(i, article);
+  }
+  text.setJSONArray("articles", articles);
+  text.setInt("art_cnt", art_cnt);
+  //---TICKER---\\
+
+  tickers = new String [1];
+  tickers[0] = ticker.getText();
+  text.setString("ticker", tickers[0]);
+
+  //---DATES---\\
+  
+  dates = new String [6];
+  id_texts = new String [6];
+  
+  dates[0] = date1Tb.getText();
+  dates[1] = date2Tb.getText();
+  dates[2] = date3Tb.getText();
+  dates[3] = date4Tb.getText();
+  dates[4] = date5Tb.getText();
+  dates[5] = date6Tb.getText();
+  
+  id_texts[0] = date1Bb.getText();
+  id_texts[1] = date2Bb.getText();
+  id_texts[2] = date3Bb.getText();
+  id_texts[3] = date4Bb.getText();
+  id_texts[4] = date5Bb.getText();
+  id_texts[5] = date6Bb.getText();
+  
+  for (int i = 0; i < 6; i++) {
+    String datesTemp = dates[i];
+    println(datesTemp);
+    println(datesTemp.length());
+    if (datesTemp.length() > 2) {
+      id_cnt = id_cnt + 1;
+    }
+  }
+  text.setInt("id_cnt", id_cnt);
+  
+  important_dates = new JSONArray();
+  
+  for (int i = 0; i < id_cnt; i++) {
+    println("now: " + i);
+    JSONObject important_date = new JSONObject();
+    important_date.setString("date", dates[i]);
+    important_date.setString("text", id_texts[i]);
+    important_dates.setJSONObject(i, important_date);
+  }
+  
+  text.setJSONArray("important_dates", important_dates);
+  
+  //---Date Of Publication---\\
+
+  dop = dateOP1b.getText() + "," + dateOP2b.getText() + dateOP3b.getText() + "," + dateOP4b.getText(); 
+  text.setString("dop", dop);
+
+  //---SAVE FILE---\\
+  saveJSONObject(text, "Z:\\IDD-SHARE\\Student Council\\EAGLE NEWS\\latest.eaglenews");
+  //saveJSONObject(text, "/Users/ryan/Desktop/EAGLE NEWS/latest.eaglenews"); 
+
+  //---LEAVE---\\
+  view = 6;
+}
+
+public void loadFile() {
+  String Ticker;
+
+  String[] art_title;
+  String[] art_text;
+  String[] id_title;
+  
+  String[] date, id_text;
+
+  int id_cnt;
+  int art_cnt;
+
+  JSONArray art_list, id_list;
+  JSONObject art_article;
+  JSONObject id_article;
+  String art_articles;
+
+  println(filePath);
+  text = loadJSONObject(filePath);
+
+  art_cnt = text.getInt("art_cnt");
+  id_cnt = text.getInt("id_cnt");
+
+  art_list = text.getJSONArray("articles");
+  id_list = text.getJSONArray("important_dates");
+
+  art_title = new String[8];
+  art_text = new String[8];
+
+  for (int i = 0; i < 8; i++) {
+    art_title[i] = "";
+    art_text[i] = "";
+  }
+
+  for (int i = 0; i < art_cnt; i ++) {
+    art_article = art_list.getJSONObject(i);
+
+    art_title[i] = art_article.getString("title");
+    println(art_title[i]);
+
+    art_text[i] = art_article.getString("text");
+    println(art_text[i]);
+  }
+
+  art1Tb.setText(art_title[0]);
+  art2Tb.setText(art_title[1]);
+  art3Tb.setText(art_title[2]);
+  art4Tb.setText(art_title[3]);
+  art5Tb.setText(art_title[4]);
+  art6Tb.setText(art_title[5]);
+  art7Tb.setText(art_title[6]);
+  art8Tb.setText(art_title[7]);
+
+  art1Bb.setText(art_text[0]);
+  art2Bb.setText(art_text[1]);
+  art3Bb.setText(art_text[2]);
+  art4Bb.setText(art_text[3]);
+  art5Bb.setText(art_text[4]);
+  art6Bb.setText(art_text[5]);
+  art7Bb.setText(art_text[6]);
+  art8Bb.setText(art_text[7]);
+
+  Ticker = text.getString("ticker");
+  ticker.setText(Ticker);
+  
+  // -----Important dates----------\\
+  
+  date = new String[6];
+  id_text = new String[6];
+  
+  for (int i = 0; i < 6; i++) {
+    date[i] = "";
+    id_text[i] = "";
+  }
+  
+  for(int i = 0; i < id_cnt; i++){
+    id_article = id_list.getJSONObject(i);
+    
+    date[i] = id_article.getString("date");
+    id_text[i] = id_article.getString("text");
+  }
+  date1Tb.setText(date[0]);
+  date2Tb.setText(date[1]);
+  date3Tb.setText(date[2]);
+  date4Tb.setText(date[3]);
+  date5Tb.setText(date[4]);
+  date6Tb.setText(date[5]);
+  
+  date1Bb.setText(id_text[0]);
+  date2Bb.setText(id_text[1]);
+  date3Bb.setText(id_text[2]);
+  date4Bb.setText(id_text[3]);
+  date5Bb.setText(id_text[4]);
+  date6Bb.setText(id_text[5]);
+  
+  MRval = 7;
+}
+
+public void fileSelected(File selection) {
+  if (selection == null) {
+    view = 0;
+    loaded = true;
+  } else {
+    println("User selected " + selection.getAbsolutePath());
+    filePath = selection.getAbsolutePath();
+  }
+  loadingFile = false;
+}
+
+public void mouseReleased() {
+  if (MRval == 0) {
+  } else if (MRval ==1) {
+    view = 1;
+  } else if (MRval ==2) {
+    viewNTB = viewNTB - 1;
+  } else if (MRval ==3) {
+    viewNTB = viewNTB + 1;
+  } else if (MRval ==4) {
+    view = 5;
+    thread("export");
+    //export();
+  } else if (MRval ==5) {
+    view = 3;
+  } else if (MRval ==6) {
+    view = 0;
+  } else if (MRval == 7) {
+    view = 1;
+  }
+  MRval = 0;
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "EagleNewsCreate" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
   }
 }
